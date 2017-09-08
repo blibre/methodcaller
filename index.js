@@ -21,11 +21,11 @@ let call = function(method, args) {
 
   data.signature = sha1(data.signature);
 
-  if( args.length > 2 ) {
+  if (args.length > 2) {
     throw "Se admiten solo 2 argumentos para la función";
   }
 
-  if ($args.length == 2) {
+  if (args.length == 2) {
     data.params = args[0];
     callback = args[1];
   } else {
