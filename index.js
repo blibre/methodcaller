@@ -1,6 +1,10 @@
+let call = function(method, args) {
+  console.log(method, args);
+}
+
 let handler = {
     get(target, propKey, receiver) {
-        return (...args) => console.log(args);
+        return (...args) => call(propKey, args);
     }
 };
 
