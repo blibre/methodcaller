@@ -37,8 +37,7 @@ let call = function(method, args) {
     request: JSON.stringify(data),
   };
 
-  let url = "http://api.buscalibre.local/local_ws.php/wsbknd";
-  console.log(params);
+  let url = process.env.METHOD_CALLER_URL;
 
   request.post({url: url, form: params, json: true}, function (e, r, response) {
 
