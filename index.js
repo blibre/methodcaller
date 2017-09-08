@@ -1,7 +1,6 @@
 module.exports = new Proxy({}, {
-  get : function(target, prop, other) {
+  get : function(target, prop) {
     console.log(target, prop);
-    console.log(other);
     if(target[prop] === undefined) {
       return function()  {
         console.log('an otherwise undefined function!!');
@@ -9,5 +8,8 @@ module.exports = new Proxy({}, {
     } else {
       return target[prop];
     }
+  },
+  apply: function(target, thisArg, args) {
+    console.log(args);
   }
 });
