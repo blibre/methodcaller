@@ -1,4 +1,6 @@
-module.exports = new Proxy({}, {
+module.exports = new Proxy(function(){
+   console.log("target");
+  }, {
   apply: function(target, thisArg, args) {
     console.log(args);
   }
