@@ -1,7 +1,7 @@
-module.exports = new Proxy(function(){
-   console.log("target");
-  }, {
-  apply: function(target, thisArg, args) {
-    console.log(args);
-  }
-});
+let handler = {
+    get(target, propKey, receiver) {
+        return (...args) => console.log(args);
+    }
+};
+
+module.exports = new Proxy({}, handler);
