@@ -1,5 +1,6 @@
 const sha1 = require('sha1');
 const md5 = require('md5');
+const request = require('request');
 
 let call = function(method, args) {
 
