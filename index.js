@@ -12,7 +12,7 @@ let call = function(method, args) {
 
   let data = {
       method: method.replace('_', ':'),
-      user: null,
+      user: 0,
       params: {},
   };
 
