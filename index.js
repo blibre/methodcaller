@@ -34,7 +34,7 @@ let call = function(method, args) {
   }
 
   let params = {
-    request: data,
+    request: JSON.stringify(data),
   };
 
   let url = "http://api.buscalibre.local/local_ws.php/wsbknd";
