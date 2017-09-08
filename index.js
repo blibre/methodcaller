@@ -40,7 +40,7 @@ let call = function(method, args) {
   let url = "http://api.buscalibre.local/local_ws.php/wsbknd";
   console.log(params);
 
-  request.post({url: url, form: params}, function (e, r, response) {
+  request.post({url: url, json: params}, function (e, r, response) {
 
     if (typeof response !== "object") {
       throw "Bad Response: " + response;
