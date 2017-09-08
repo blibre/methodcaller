@@ -38,6 +38,9 @@ let call = function(method, args) {
   };
 
   let url = process.env.METHOD_CALLER_URL;
+  if (!url) {
+    throw "Es necesario definir la url para el method caller en la variable de entorno METHOD_CALLER_URL";
+  }
 
   request.post({url: url, form: params, json: true}, function (e, r, response) {
 
