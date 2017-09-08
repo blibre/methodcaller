@@ -41,8 +41,6 @@ let call = function(method, args) {
 
   request.post({url: url, form: params}, function (e, r, response) {
 
-    console.log(response);
-
     if (typeof response !== "object") {
       throw "Bad Response: " + response;
     }
