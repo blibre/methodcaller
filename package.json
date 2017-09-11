@@ -1,5 +1,5 @@
 {
-  "name": "methodcaller.js",
+  "name": "methodcaller",
   "version": "1.0.0",
   "description": "Implementacion de MethodCaller para buscalibre en NodeJS",
   "main": "index.js",
