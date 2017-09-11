@@ -2,6 +2,17 @@ const sha1 = require('sha1');
 const md5 = require('md5');
 const request = require('request');
 
+const mc_url = process.env.METHOD_CALLER_URL;
+const sign = process.env.METHOD_CALLER_SIGN;
+
+if (!mc_url) {
+  throw "Es necesario definir la url para el method caller en la variable de entorno METHOD_CALLER_URL";
+}
+
+if (!sign) {
+  throw "Es necesario definir el hash de identificacion para el method caller en la variable de entorno METHOD_CALLER_SIGN";
+}
+
 let call = function(method, args) {
 
   let callback = null;
@@ -18,7 +29,7 @@ let call = function(method, args) {
 
   data.signature = data.method;
   data.signature += data.user;
-  data.signature += sha1( md5("wertyuhjc76091+**FS%&&/TBsadasdas") );
+  data.signature += sha1( md5(sign) );
 
   data.signature = sha1(data.signature);
 
@@ -37,12 +48,7 @@ let call = function(method, args) {
     request: JSON.stringify(data),
   };
 
-  let url = process.env.METHOD_CALLER_URL;
-  if (!url) {
-    throw "Es necesario definir la url para el method caller en la variable de entorno METHOD_CALLER_URL";
-  }
-
-  request.post({url: url, form: params, json: true}, function (e, r, response) {
+  request.post({url: mc_url, form: params, json: true}, function (e, r, response) {
 
     if (typeof response !== "object") {
       throw "Bad Response: " + response;
