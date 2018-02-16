@@ -48,14 +48,18 @@ let call = function(method, args) {
     request: JSON.stringify(data),
   };
 
-  request.post({url: mc_url, form: params, json: true}, function (e, r, response) {
+  request.post({url: mc_url, form: params, json: true}, function (e, response, body) {
 
-    if (typeof response !== "object") {
-      throw "Bad Response: " + response;
+    if (typeof body !== "object") {
+      throw "Bad Response: " + body;
+    }
+
+    if (body.success <= 0) {
+      throw body.message;
     }
 
     if (callback) {
-      callback(response.response);
+      callback(body.response);
     }
   });
 }
