@@ -51,11 +51,11 @@ let call = function(method, args) {
   request.post({url: mc_url, form: params, json: true}, function (e, response, body) {
 
     if (typeof body !== "object") {
-      throw "Bad Response: " + body;
+      throw new Error("Bad Response: " + body);
     }
 
     if (body.success <= 0) {
-      throw body.message;
+      throw new Error(body.message);
     }
 
     if (callback) {
