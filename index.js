@@ -33,13 +33,14 @@ let call = function(method, args) {
 
   data.signature = sha1(data.signature);
 
-  if (args.length > 2) {
-    throw "Se admiten solo 2 argumentos para la función";
+  if (args.length > 3) {
+    throw "Se admiten solo 3 argumentos para la función";
   }
 
-  if (args.length == 2) {
+  if (args.length >= 2) {
     data.params = args[0];
     callback = args[1];
+    error = args[2] || function(e){throw e};
   } else {
     data.params = ['dummy'];
   }
@@ -51,11 +52,11 @@ let call = function(method, args) {
   request.post({url: mc_url, form: params, json: true}, function (e, response, body) {
 
     if (typeof body !== "object") {
-      throw new Error("Bad Response: " + body);
+      error(new Error("Bad Response: " + body));
     }
 
     if (body.success <= 0) {
-      throw new Error(body.message);
+      error(new Error(body.message));
     }
 
     if (callback) {
