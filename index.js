@@ -55,7 +55,7 @@ let call = function(method, args) {
       error(new Error("Bad Response: " + body));
     }
 
-    if (body.success <= 0) {
+    if (!body || body.success <= 0) {
       error(new Error(body.message));
     }
 
