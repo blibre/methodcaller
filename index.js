@@ -56,7 +56,7 @@ let call = function(method, args) {
     }
 
     if (!body || body.success <= 0) {
-      error(new Error(body.message));
+      error(new Error((body && body.message) || 'Unkown Error'));
     }
 
     if (callback) {
