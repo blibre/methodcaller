@@ -60,7 +60,7 @@ let call = function(method, args) {
     }
 
     if (callback) {
-      callback(body.response);
+      callback((body && body.response) || {});
     }
   });
 }
